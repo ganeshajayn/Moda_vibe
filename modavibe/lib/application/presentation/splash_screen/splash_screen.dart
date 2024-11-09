@@ -1,7 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
+import 'package:modavibe/application/presentation/on_boarding_screen/screen/on_boardingscreen.dart';
 
 class Splashscreen extends StatelessWidget {
   const Splashscreen({super.key});
@@ -14,6 +14,6 @@ class Splashscreen extends StatelessWidget {
         splashIconSize: 500,
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: const Homescreen());
+        nextScreen: Onboarding());
   }
 }
