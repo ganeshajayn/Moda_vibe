@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modavibe/Domain/utils/elevatedbuttonWidget/elevatedbutton.dart';
 import 'package:modavibe/Domain/utils/textformfieldWidget/textbuttonwidget.dart';
 import 'package:modavibe/Domain/utils/textwidget/textwidget.dart';
+import 'package:modavibe/application/presentation/Authentication/Signup_screen/signup_screen.dart';
 
 class UserloginWidget extends StatelessWidget {
   const UserloginWidget(
@@ -30,7 +31,7 @@ class UserloginWidget extends StatelessWidget {
             iconData: Icons.email,
           ),
           const SizedBox(
-            height: 50,
+            height: 40,
           ),
           TextbuttonWidget(
               controller: passwordcontroller,
@@ -38,6 +39,7 @@ class UserloginWidget extends StatelessWidget {
               hinttext: "Enter the password",
               labeltext: "Password",
               textInputType: TextInputType.emailAddress,
+              suffixicon: Icons.visibility_off,
               obscuretext: true),
           const SizedBox(
             height: 50,
@@ -48,12 +50,16 @@ class UserloginWidget extends StatelessWidget {
             height: 10,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const Signupscreen(),
+                ));
+              },
               child: const Colorwidget(
                 title: "New User ? Register here",
                 textcolor: Colors.black,
                 textsize: 15,
-              ))
+              )),
         ],
       ),
     );

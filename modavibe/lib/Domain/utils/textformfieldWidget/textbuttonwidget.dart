@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextbuttonWidget extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final IconData? suffixicon;
   final String hinttext;
   final String labeltext;
   final TextInputType? textInputType;
@@ -12,14 +13,15 @@ class TextbuttonWidget extends StatelessWidget {
   final IconData? iconData;
   const TextbuttonWidget(
       {super.key,
-      required this.controller,
+      this.controller,
       required this.hinttext,
       required this.labeltext,
       this.textInputType,
       required this.obscuretext,
       this.validator,
       this.onchanged,
-      this.iconData});
+      this.iconData,
+      this.suffixicon});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,16 @@ class TextbuttonWidget extends StatelessWidget {
                     color: Colors.black,
                   )
                 : null,
+            suffixIcon: suffixicon != null
+                ? IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      suffixicon,
+                      color: Colors.black,
+                    ))
+                : null,
             border: InputBorder.none,
+            floatingLabelBehavior: FloatingLabelBehavior.never,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(color: Colors.transparent)),
