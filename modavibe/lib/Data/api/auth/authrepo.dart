@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:modavibe/Data/sharedpreferences/shared_preferences.dart';
 import 'package:modavibe/Model/login_model/login_model.dart';
@@ -8,33 +7,28 @@ import 'package:modavibe/Model/signup_model/signup_model.dart';
 class Authrespository {
   static const String _baseurl = "https://cityvibe.jasim.online";
   static const String _signupendpoint = "/signup";
-  static const String _loginenpoint = '/login';
+  static const String _loginenpoint = "/login";
 //function to handle user signup
   Future<String> signup(Signupmodel signuprequest) async {
     try {
       final url = Uri.parse("$_baseurl$_signupendpoint");
       final body = jsonEncode(signuprequest.tojson());
+      print("response body :$body");
       final response = await http.post(url,
           headers: {
             "Content-Type": "application/json",
-            "accept": "applicaton/json"
+            "accept": "application/json"
           },
           body: body);
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
-        final token = data['data']['token'];
-        final id = data['data']['users']['id'];
-        savetoken(token);
-        saveuserid(id);
-        return "success";
+        final message = data['message'] ?? "Signup successful";
+        return message;
       } else {
         final data = jsonDecode(response.body);
-        String errormessage = '';
-        if (data['error'] == "user alredy exist,sign in") {
-          errormessage = data['error'];
-        } else {
-          errormessage = data['message'];
-        }
+        final errormessage = data['message'] ?? "Unknown error";
+        print("error response ;${response.body}");
         return errormessage;
       }
     } catch (e) {
@@ -51,25 +45,22 @@ class Authrespository {
       final response = await http.post(url,
           headers: {
             'Content-Type': "application/json",
-            'accept': 'application/jdon'
+            'accept': 'application/json'
           },
           body: body);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
-        final token = data['data']['token'];
-        final id = data['data']['users']['id'];
+        print('response body :$body');
+        final token = data['token'];
+        final id = data['user']['ID'];
         savetoken(token);
         saveuserid(id);
-        return 'success';
+        return 'OK';
       } else {
         final data = jsonDecode(response.body);
-        String errormessage = '';
-        if (data['error'] == "user already exist,sign in") {
-          errormessage == data['error'];
-        } else {
-          errormessage = data['message'];
-        }
-        return errormessage;
+        final errormessgae = data['message'] ?? "unknownerror";
+        print('errormessage:${response.body}');
+        return errormessgae;
       }
     } catch (e) {
       print('error during login:$e');

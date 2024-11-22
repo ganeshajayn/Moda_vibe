@@ -13,41 +13,50 @@ class Signupwidget extends StatelessWidget {
       required this.emailcontroller,
       required this.passwordcontroller,
       required this.formkey,
-      required this.confirmpasswordcontroller});
+      required this.confirmpasswordcontroller,
+      required this.phonenumber});
+
   final TextEditingController namecontroller;
   final GlobalKey<FormState> formkey;
   final TextEditingController emailcontroller;
   final TextEditingController passwordcontroller;
   final TextEditingController confirmpasswordcontroller;
+  final TextEditingController phonenumber;
+
   @override
   Widget build(BuildContext context) {
+    // Get screen size using MediaQuery
+    final screenSize = MediaQuery.of(context).size;
+    final screenHeight = screenSize.height;
+    final screenWidth = screenSize.width;
+
     return SingleChildScrollView(
       child: Form(
         key: formkey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            // Scaled image based on screen size
             Image.asset(
-              "assets/images/freepik__candid-image-photography-natural-textures-highly-r__70051.jpeg",
-              height: 380,
-              width: 450,
+              "assets/images/Untitled design (5).png",
+              height: screenHeight * 0.3, // 30% of screen height
+              width: screenWidth * 0.8, // 80% of screen width
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 30),
+            SizedBox(height: screenHeight * 0.02), // Responsive spacing
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Colorwidget(
                   title: "Create \nan account!",
-                  textsize: 40,
+                  textsize: screenWidth *
+                      0.1, // Adjust text size based on screen width
                 ),
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            SizedBox(height: screenHeight * 0.05), // Responsive spacing
+
+            // Name input field
             TextbuttonWidget(
                 iconData: Icons.person,
                 controller: namecontroller,
@@ -58,14 +67,14 @@ class Signupwidget extends StatelessWidget {
                     return "Name is required";
                   }
                   if (value.length < 3) {
-                    return "Name contain more than 3 letters ";
+                    return "Name must be longer than 3 characters";
                   }
                   return null;
                 },
                 obscuretext: false),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: screenHeight * 0.03), // Responsive spacing
+
+            // Email input field
             TextbuttonWidget(
                 controller: emailcontroller,
                 iconData: Icons.email,
@@ -80,34 +89,34 @@ class Signupwidget extends StatelessWidget {
                     caseSensitive: false,
                     multiLine: false,
                   );
-                  if (emailRegex.hasMatch(value)) {
-                    return "please enter valid e-mail";
+                  if (!emailRegex.hasMatch(value)) {
+                    return "Please enter a valid e-mail";
                   }
                   return null;
                 },
                 obscuretext: false),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: screenHeight * 0.03), // Responsive spacing
+
+            // Password input field
             TextbuttonWidget(
                 controller: passwordcontroller,
                 hinttext: "New Password",
-                labeltext: "Newpassword",
+                labeltext: "New Password",
                 iconData: Icons.security,
                 suffixicon: Icons.visibility_off,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "password required";
+                    return "Password is required";
                   }
                   if (value.length < 6) {
-                    return "Required atleast 6 characters";
+                    return "Password must be at least 6 characters";
                   }
                   return null;
                 },
                 obscuretext: true),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: screenHeight * 0.03), // Responsive spacing
+
+            // Confirm Password input field
             TextbuttonWidget(
                 controller: confirmpasswordcontroller,
                 hinttext: "Confirm Password",
@@ -116,33 +125,52 @@ class Signupwidget extends StatelessWidget {
                 suffixicon: Icons.visibility_off,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "confirmpassword is required";
+                    return "Confirm password is required";
                   }
                   if (value != passwordcontroller.text) {
-                    return "password does not match";
+                    return "Passwords do not match";
                   }
                   return null;
                 },
                 obscuretext: true),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: screenHeight * 0.03), // Responsive spacing
+
+            // Phone input field
+            TextbuttonWidget(
+                hinttext: 'Enter your Phone Number',
+                labeltext: 'Phone',
+                iconData: Icons.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Phone number is required";
+                  }
+                  if (value.length < 3) {
+                    return "Please enter a valid phone number";
+                  }
+                  return null;
+                },
+                obscuretext: false),
+            SizedBox(height: screenHeight * 0.03), // Responsive spacing
+
+            // Sign Up button
             ElevatedbuttonWidget(
                 onpressed: () {
                   if (formkey.currentState!.validate()) {
                     BlocProvider.of<SignupBloc>(context).add(
                         Signupbuttonpressed(
+                            phonenumber: phonenumber.text,
                             email: emailcontroller.text,
                             name: namecontroller.text,
                             password: passwordcontroller.text,
                             confirmpassword: confirmpasswordcontroller.text));
                   }
                 },
-                width: 130,
+                width:
+                    screenWidth * 0.5, // 50% of screen width for button width
                 buttontext: "Sign Up"),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: screenHeight * 0.02), // Responsive spacing
+
+            // Navigate to Login screen if already registered
             TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -152,9 +180,9 @@ class Signupwidget extends StatelessWidget {
                       ));
                 },
                 child: const Colorwidget(
-                  title: "Already register?Sign Up",
+                  title: "Already registered? Sign In",
                   textcolor: Colors.black,
-                ))
+                )),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:modavibe/Data/services/auth/authrepo.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modavibe/Data/api/auth/authrepo.dart';
 import 'package:modavibe/Model/signup_model/signup_model.dart';
 part 'signup_event.dart';
 part 'signup_state.dart';
@@ -15,13 +15,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           emit(SignUpforminvalid(error: 'password does not match'));
         }
         final signuprequest = Signupmodel(
+            phone: event.phonenumber,
             username: event.name,
             email: event.email,
             password: event.password,
             //   phone: event.phonenumber,
             confirmpasssword: event.confirmpassword);
         final response = await authrespository.signup(signuprequest);
-        if (response == 'success') {
+        if (response == 'OK') {
           emit(Signupsuccesfull('user signed succesfully'));
         } else {
           emit(Signuperror(error: response));

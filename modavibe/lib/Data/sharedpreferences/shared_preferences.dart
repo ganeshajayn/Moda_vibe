@@ -5,7 +5,7 @@ Future<String?> gettoken() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString('access token') ?? '';
   } catch (e) {
-    print("error fetching token :$e");
+    // print("error fetching token :$e");
     throw Exception('failed to get access token :$e');
   }
 }
@@ -15,7 +15,7 @@ Future<int?> getuserid() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt('Userid') ?? 0;
   } catch (e) {
-    print("error fetching token:$e");
+    // print("error fetching token:$e");
     throw Exception('failed to get the token:$e');
   }
 }
@@ -26,7 +26,7 @@ Future<void> savetoken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('access token', token);
   } catch (e) {
-    print('Error saving id:$e');
+    //  print('Error saving id:$e');
     throw Exception("failed to save the id :$e");
   }
 }

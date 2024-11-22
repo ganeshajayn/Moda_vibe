@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modavibe/Domain/utils/elevatedbuttonWidget/elevatedbutton.dart';
@@ -45,7 +43,7 @@ class UserloginWidget extends StatelessWidget {
                   caseSensitive: false,
                   multiLine: false,
                 );
-                if (emailRegex.hasMatch(value)) {
+                if (!emailRegex.hasMatch(value)) {
                   return "please entered a valid e-mail";
                 }
                 return null;

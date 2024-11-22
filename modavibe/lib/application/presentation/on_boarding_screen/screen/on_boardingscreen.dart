@@ -1,6 +1,5 @@
-import 'package:concentric_transition/concentric_transition.dart';
+import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:modavibe/application/presentation/on_boarding_screen/widget/action_slider_widget.dart';
 
 class Onboarding extends StatelessWidget {
@@ -11,6 +10,7 @@ class Onboarding extends StatelessWidget {
     "assets/images/onboardingscreen2-removebg-preview.png",
     "assets/images/young-smiling-man-red-shirt-with-optical-glasses-points-isolated-orange-wall-removebg-preview.png"
   ];
+
   final List<String> text = [
     "Welcome to ModaVibe",
     "Fit to Comfort",
@@ -22,6 +22,11 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen size using MediaQuery
+    final screenSize = MediaQuery.of(context).size;
+    final screenHeight = screenSize.height;
+    final screenWidth = screenSize.width;
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -41,19 +46,27 @@ class Onboarding extends StatelessWidget {
                     Center(
                       child: Image.asset(
                         imagePath,
-                        height: 450,
-                        width: 400,
+                        height: screenHeight *
+                            0.4, // Use a fraction of the screen height
+                        width: screenWidth *
+                            0.8, // Use a fraction of the screen width
                       ),
                     ),
                     Positioned(
-                      bottom: pageIndex == pages.length - 1 ? 280 : 200,
+                      bottom: pageIndex == pages.length - 1
+                          ? screenHeight *
+                              0.3 // Adjust bottom based on screen size
+                          : screenHeight * 0.2,
                       left: 0,
                       right: 0,
                       child: Text(
                         text[pageIndex],
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                            fontSize: 18, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: screenWidth *
+                              0.05, // Font size as a fraction of screen width
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -67,11 +80,12 @@ class Onboarding extends StatelessWidget {
               valueListenable: _currentIndexNotifier,
               builder: (context, currentIndex, child) {
                 return currentIndex == pages.length - 1
-                    ? const Positioned(
-                        bottom: 20,
-                        left: 50,
-                        right: 50,
-                        child: Actionsliderwidge(),
+                    ? Positioned(
+                        bottom: screenHeight *
+                            0.05, // Adjust bottom for action slider
+                        left: screenWidth * 0.1, // Adjust width
+                        right: screenWidth * 0.1,
+                        child: const Actionsliderwidge(),
                       )
                     : const SizedBox.shrink();
               },

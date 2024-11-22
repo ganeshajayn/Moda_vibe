@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SubHeadingTextWidget extends StatelessWidget {
   const SubHeadingTextWidget({
@@ -15,7 +14,7 @@ class SubHeadingTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: GoogleFonts.poppins(
+      style: TextStyle(
         fontSize: textsize ?? 16,
         fontWeight: FontWeight.w600,
         color: textColor,
@@ -34,7 +33,7 @@ class Colorwidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: GoogleFonts.openSans(
+      style: TextStyle(
           color: textcolor,
           fontSize: textsize ?? 16,
           fontWeight: FontWeight.w700),

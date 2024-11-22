@@ -17,7 +17,7 @@ class ElevatedbuttonWidget extends StatelessWidget {
     return SizedBox(
       width: width,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onpressed,
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
               shape: RoundedRectangleBorder(

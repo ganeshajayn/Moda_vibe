@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modavibe/application/bussineslogic/login/bloc/login_bloc.dart';
 import 'package:modavibe/application/bussineslogic/signup/bloc/signup_bloc.dart';
+import 'package:modavibe/application/bussineslogic/splash/bloc/splash_bloc.dart';
 import 'package:modavibe/application/presentation/splash_screen/splash_screen.dart';
 
 void main() {
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => SignupBloc(),
+        ),
+        BlocProvider(
+          create: (_) => SplashBloc(),
         )
       ],
       child: const MaterialApp(
