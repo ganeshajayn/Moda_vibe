@@ -38,9 +38,9 @@ class Signupwidget extends StatelessWidget {
           children: [
             // Scaled image based on screen size
             Image.asset(
-              "assets/images/Untitled design (5).png",
+              "assets/images/freepik__candid-image-photography-natural-textures-highly-r__75557-removebg-preview (1).png",
               height: screenHeight * 0.3, // 30% of screen height
-              width: screenWidth * 0.8, // 80% of screen width
+              width: screenWidth * 0.5, // 80% of screen width
             ),
             SizedBox(height: screenHeight * 0.02), // Responsive spacing
             Padding(
@@ -176,12 +176,12 @@ class Signupwidget extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
+                        builder: (context) => const LoginScreen(),
                       ));
                 },
                 child: const Colorwidget(
                   title: "Already registered? Sign In",
-                  textcolor: Colors.black,
+                  textcolor: Colors.deepPurple,
                 )),
           ],
         ),

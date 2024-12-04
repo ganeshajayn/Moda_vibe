@@ -17,6 +17,8 @@ class UserloginWidget extends StatelessWidget {
   final GlobalKey<FormState> formkey;
   @override
   Widget build(BuildContext context) {
+    final screenwidht = MediaQuery.sizeOf(context).width;
+    final screenheight = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Form(
         key: formkey,
@@ -24,9 +26,9 @@ class UserloginWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/Untitled design (5).png",
-              height: 380,
-              width: 450,
+              "assets/images/freepik__candid-image-photography-natural-textures-highly-r__75557-removebg-preview (1).png",
+              height: screenheight * 0.5,
+              width: screenwidht * 0.8,
             ),
             TextbuttonWidget(
               controller: emailcontroller,
@@ -90,7 +92,7 @@ class UserloginWidget extends StatelessWidget {
                 },
                 child: const Colorwidget(
                   title: "New User ? Register here",
-                  textcolor: Colors.black,
+                  textcolor: Colors.deepPurple,
                   textsize: 15,
                 )),
           ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modavibe/Data/sharedpreferences/shared_preferences.dart';
 import 'package:modavibe/application/bussineslogic/splash/bloc/splash_bloc.dart';
+import 'package:modavibe/application/presentation/bottom_nav/bottom_nav.dart';
 import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
 
 import 'package:modavibe/application/presentation/on_boarding_screen/screen/on_boardingscreen.dart';
@@ -14,7 +15,8 @@ class Splashscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
         backgroundColor: Colors.white,
-        splash: Image.asset("assets/images/Untitled design (5).png"),
+        splash: Image.asset(
+            "assets/images/freepik__candid-image-photography-natural-textures-highly-r__75557-removebg-preview (1).png"),
         splashIconSize: 500,
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
@@ -35,7 +37,7 @@ class Splashscreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Homescreen(),
+                        builder: (context) => Bottomnavbar(),
                       ),
                       (route) => false);
                 }

@@ -12,7 +12,7 @@ class Onboarding extends StatelessWidget {
   ];
 
   final List<String> text = [
-    "Welcome to ModaVibe",
+    "Welcome to Style Laura",
     "Fit to Comfort",
     "Unleash Your Style Potential"
   ];

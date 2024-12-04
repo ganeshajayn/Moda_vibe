@@ -35,7 +35,7 @@ Future<void> userlogout(BuildContext context) async {
                       ),
                       (route) => false);
                 },
-                width: MediaQuery.sizeOf(context).width * 0.2,
+                width: MediaQuery.sizeOf(context).width * 0.3,
                 buttontext: 'Yes'),
             TextButton(
                 onPressed: () {

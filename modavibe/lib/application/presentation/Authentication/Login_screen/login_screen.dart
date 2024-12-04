@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:modavibe/Domain/utils/functions/functions.dart';
 import 'package:modavibe/application/bussineslogic/login/bloc/login_bloc.dart';
 import 'package:modavibe/application/presentation/Authentication/Login_screen/widgets/login_Widget.dart';
+import 'package:modavibe/application/presentation/bottom_nav/bottom_nav.dart';
 import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class LoginScreen extends StatelessWidget {
               context, "succesfully Logged in", Colors.green, Colors.white);
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const Homescreen(),
+                builder: (context) => const Bottomnavbar(),
               ),
               (route) => false);
         } else if (state is Loginerror) {
