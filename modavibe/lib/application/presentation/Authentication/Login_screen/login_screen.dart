@@ -5,7 +5,6 @@ import 'package:modavibe/Domain/utils/functions/functions.dart';
 import 'package:modavibe/application/bussineslogic/login/bloc/login_bloc.dart';
 import 'package:modavibe/application/presentation/Authentication/Login_screen/widgets/login_Widget.dart';
 import 'package:modavibe/application/presentation/bottom_nav/bottom_nav.dart';
-import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -15,7 +14,6 @@ class LoginScreen extends StatelessWidget {
     final formkey = GlobalKey<FormState>();
     final TextEditingController emailcontroller = TextEditingController();
     final TextEditingController passwordcontroller = TextEditingController();
-
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is Loginloading) {

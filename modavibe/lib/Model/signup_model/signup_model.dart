@@ -12,11 +12,11 @@ class Signupmodel {
       required this.confirmpasssword});
   Map<String, String> tojson() {
     return {
-      'confirmpassword ': confirmpasssword,
-      'email': email,
-      'phonenumber': phone,
-      'password': password,
-      'username': username
+      "confirm password": confirmpasssword,
+      "email": email,
+      "phone": phone,
+      "password": password,
+      "username": username
     };
   }
 }

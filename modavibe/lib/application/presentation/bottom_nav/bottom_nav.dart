@@ -5,7 +5,6 @@ import 'package:modavibe/application/presentation/bottom_nav/widgets/navbar_widg
 import 'package:modavibe/application/presentation/cart_screen/cart_screen.dart';
 import 'package:modavibe/application/presentation/favourites/favourite_screen.dart';
 import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
-import 'package:modavibe/application/presentation/settings/settings_screen.dart';
 
 class Bottomnavbar extends StatelessWidget {
   const Bottomnavbar({super.key});

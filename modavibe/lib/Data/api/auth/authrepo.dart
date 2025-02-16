@@ -12,19 +12,21 @@ class Authrespository {
   Future<String> signup(Signupmodel signuprequest) async {
     try {
       final url = Uri.parse("$_baseurl$_signupendpoint");
+      //  print("url :$url");
       final body = jsonEncode(signuprequest.tojson());
-      print("response body :$body");
+      //  print("request body :$body");
       final response = await http.post(url,
           headers: {
             "Content-Type": "application/json",
             "accept": "application/json"
           },
           body: body);
-
+      //    print('response:$response');
+      //   print("responsebody:${response.body}");
+      print("request sent:$url");
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
-        final message = data['message'] ?? "Signup successful";
-        return message;
+        return "OK";
       } else {
         final data = jsonDecode(response.body);
         final errormessage = data['message'] ?? "Unknown error";
@@ -32,38 +34,44 @@ class Authrespository {
         return errormessage;
       }
     } catch (e) {
-      print('error during signup :$e');
+      //  print('error during signup :$e');
       throw Exception("error in signup :$e");
     }
   }
 
 // function to handel userlogin
   Future<String> login(Loginmodel loginrequest) async {
+    print("login function started");
     try {
-      final url = Uri.parse("$_baseurl$_loginenpoint");
+      // final url = Uri.parse("$_baseurl$_loginenpoint");
+      print("request iniated");
       final body = jsonEncode(loginrequest.tojson());
+      final url = Uri.parse("https://cityvibe.jasim.online/login");
       final response = await http.post(url,
           headers: {
             'Content-Type': "application/json",
             'accept': 'application/json'
           },
           body: body);
+      print("request send");
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
-        print('response body :$body');
+        //      print('response body :$body');
         final token = data['token'];
         final id = data['user']['ID'];
         savetoken(token);
         saveuserid(id);
+        print("reqst succeed");
         return 'OK';
       } else {
+        print("reqst failed");
         final data = jsonDecode(response.body);
         final errormessgae = data['message'] ?? "unknownerror";
-        print('errormessage:${response.body}');
+        //   print('errormessage:${response.body}');
         return errormessgae;
       }
     } catch (e) {
-      print('error during login:$e');
+      // print('error during login:$e');
       throw Exception('login failed:$e');
     }
   }

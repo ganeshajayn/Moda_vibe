@@ -14,14 +14,14 @@ class Signupwidget extends StatelessWidget {
       required this.passwordcontroller,
       required this.formkey,
       required this.confirmpasswordcontroller,
-      required this.phonenumber});
+      required this.phonenumbercontroller});
 
   final TextEditingController namecontroller;
   final GlobalKey<FormState> formkey;
   final TextEditingController emailcontroller;
   final TextEditingController passwordcontroller;
   final TextEditingController confirmpasswordcontroller;
-  final TextEditingController phonenumber;
+  final TextEditingController phonenumbercontroller;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +137,7 @@ class Signupwidget extends StatelessWidget {
 
             // Phone input field
             TextbuttonWidget(
+                controller: phonenumbercontroller,
                 hinttext: 'Enter your Phone Number',
                 labeltext: 'Phone',
                 iconData: Icons.phone,
@@ -158,7 +159,7 @@ class Signupwidget extends StatelessWidget {
                   if (formkey.currentState!.validate()) {
                     BlocProvider.of<SignupBloc>(context).add(
                         Signupbuttonpressed(
-                            phonenumber: phonenumber.text,
+                            phonenumber: phonenumbercontroller.text,
                             email: emailcontroller.text,
                             name: namecontroller.text,
                             password: passwordcontroller.text,

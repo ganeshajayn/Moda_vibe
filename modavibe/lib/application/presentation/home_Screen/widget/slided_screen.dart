@@ -7,12 +7,12 @@ class Sliderscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screeheight = MediaQuery.sizeOf(context).height;
-    final screenwidth = MediaQuery.sizeOf(context).width;
+    // final screenwidth = MediaQuery.sizeOf(context).width;
     return CarouselSlider(
         items: [
-          carouselitem(Colors.red),
-          carouselitem(Colors.blue),
-          carouselitem(Colors.green)
+          carouselitem("assets/images/STYLE.png"),
+          carouselitem("assets/images/Style With Style Laura (1).png"),
+          carouselitem("assets/images/Get 30% off on every order (1).png")
         ],
         options: CarouselOptions(
             height: screeheight * 0.25,
@@ -30,18 +30,21 @@ class Sliderscreen extends StatelessWidget {
   }
 }
 
-Widget carouselitem(Color color) {
+Widget carouselitem(String imagepath) {
   return Container(
-    width: double.infinity,
-    decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 2,
-              offset: const Offset(2, 2))
-        ]),
-  );
+      width: double.infinity,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
+        BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 2,
+            offset: const Offset(2, 2)),
+      ]),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(
+            imagepath,
+            fit: BoxFit.cover,
+          )));
 }

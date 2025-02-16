@@ -1,10 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modavibe/Data/sharedpreferences/shared_preferences.dart';
 import 'package:modavibe/application/bussineslogic/splash/bloc/splash_bloc.dart';
 import 'package:modavibe/application/presentation/bottom_nav/bottom_nav.dart';
-import 'package:modavibe/application/presentation/home_Screen/home_screen.dart';
 
 import 'package:modavibe/application/presentation/on_boarding_screen/screen/on_boardingscreen.dart';
 
@@ -37,7 +38,7 @@ class Splashscreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Bottomnavbar(),
+                        builder: (context) => const Bottomnavbar(),
                       ),
                       (route) => false);
                 }

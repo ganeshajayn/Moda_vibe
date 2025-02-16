@@ -15,17 +15,17 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           emit(SignUpforminvalid(error: 'password does not match'));
         }
         final signuprequest = Signupmodel(
-            phone: event.phonenumber,
             username: event.name,
             email: event.email,
             password: event.password,
-            //   phone: event.phonenumber,
+            phone: event.phonenumber,
             confirmpasssword: event.confirmpassword);
         final response = await authrespository.signup(signuprequest);
         if (response == 'OK') {
           emit(Signupsuccesfull('user signed succesfully'));
         } else {
           emit(Signuperror(error: response));
+          //  print("error:$response");
         }
       } catch (e) {
         emit(Signuperror(error: e.toString()));
