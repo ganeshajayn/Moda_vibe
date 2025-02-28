@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modavibe/Data/api/categoryrepo/categoryrepo.dart';
 import 'package:modavibe/application/bussineslogic/bottomnavbar/bloc/navbar_bloc.dart';
+import 'package:modavibe/application/bussineslogic/category/category_bloc.dart';
 import 'package:modavibe/application/bussineslogic/login/bloc/login_bloc.dart';
 import 'package:modavibe/application/bussineslogic/signup/bloc/signup_bloc.dart';
 import 'package:modavibe/application/bussineslogic/splash/bloc/splash_bloc.dart';
@@ -30,7 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => NavbarBloc(),
         ),
-        BlocProvider(create: (context) => ThemeBloc())
+        BlocProvider(create: (context) => ThemeBloc()),
+        BlocProvider(create: (_) => CategoryBloc(Categoryrepository())),
       ],
       child: BlocBuilder<ThemeBloc, Themestate>(
         builder: (context, themestate) {
